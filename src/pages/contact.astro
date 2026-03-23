@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Kontakt" description="Ta kontakt med Helsepasset – vi hjelper deg gjerne.">
+  <!-- Page header -->
+  <section class="bg-gradient-to-br from-primary-700 to-primary-500 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Kontakt oss</h1>
+      <p class="text-primary-100 text-lg max-w-xl mx-auto">
+        Har du spørsmål eller ønsker du å komme i gang? Vi svarer deg raskt.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section class="py-20" aria-labelledby="contact-form-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <!-- Contact info -->
+        <div>
+          <h2 id="contact-info-heading" class="text-2xl font-bold text-gray-900 mb-6">Kom i kontakt</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Vi er her for å hjelpe deg. Fyll ut skjemaet eller ta kontakt direkte via e-post eller telefon.
+          </p>
+          <ul class="space-y-6" role="list" aria-label="Kontaktinformasjon">
+            <li class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">E-post</p>
+                <a href="mailto:post@helsepasset.no" class="text-primary-600 hover:text-primary-700 transition-colors">post@helsepasset.no</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">Adresse</p>
+                <p class="text-gray-600">Oslo, Norge</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact form -->
+        <div>
+          <h2 id="contact-form-heading" class="text-2xl font-bold text-gray-900 mb-6">Send oss en melding</h2>
+          <form
+            id="contact-form"
+            class="space-y-5"
+            method="POST"
+            action="#"
+            aria-label="Kontaktskjema"
+            novalidate
+          >
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">
+                Navn <span class="text-red-500" aria-label="obligatorisk">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
+                placeholder="Ola Nordmann"
+                aria-required="true"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+                E-post <span class="text-red-500" aria-label="obligatorisk">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
+                placeholder="ola@eksempel.no"
+                aria-required="true"
+              />
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1.5">
+                Emne
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
+                placeholder="Hva kan vi hjelpe deg med?"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">
+                Melding <span class="text-red-500" aria-label="obligatorisk">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none resize-y"
+                placeholder="Skriv din melding her..."
+                aria-required="true"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-primary-700 active:bg-primary-800 transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              data-umami-event="contact-form-submit"
+            >
+              Send melding
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Example of programmatic Umami event tracking
+  // import { trackEvent } from '../utils/analytics';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Programmatic Umami event tracking (in addition to data-umami-event attribute)
+    if (typeof window !== 'undefined' && 'umami' in window) {
+      // @ts-expect-error - umami is injected via script tag
+      window.umami.track('contact-form-submitted', {
+        subject: (document.getElementById('subject') as HTMLInputElement)?.value || 'intet emne',
+      });
+    }
+
+    // TODO: handle actual form submission (e.g., Netlify Forms, API call, etc.)
+    alert('Takk for meldingen! Vi tar kontakt snart.');
+    form.reset();
+  });
+</script>

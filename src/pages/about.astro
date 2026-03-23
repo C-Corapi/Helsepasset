@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  { title: 'Integritet', description: 'Vi behandler din helseinformasjon med høyeste respekt og konfidensialitet.' },
+  { title: 'Tilgjengelighet', description: 'Alltid tilgjengelig for deg, uansett tid og sted.' },
+  { title: 'Innovasjon', description: 'Vi bruker moderne teknologi for å gi deg den beste opplevelsen.' },
+];
+---
+
+<Layout title="Om oss" description="Lær mer om Helsepasset og vårt team.">
+  <!-- Page header -->
+  <section class="bg-gradient-to-br from-primary-700 to-primary-500 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Om Helsepasset</h1>
+      <p class="text-primary-100 text-lg max-w-2xl mx-auto">
+        Vi er et dedikert team som jobber for å gjøre helseoversikten din enklere og tryggere.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-20" aria-labelledby="story-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 id="story-heading" class="text-3xl font-bold text-gray-900 mb-5">Vår historie</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Helsepasset ble grunnlagt med én visjon: å gjøre det enkelt for alle å ha full oversikt over sin egen helse. Vi tror at tilgang til din helseinformasjon er en grunnleggende rettighet.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Gjennom samarbeid med helseeksperter og moderne teknologi har vi bygget en plattform som er trygg, enkel å bruke og tilgjengelig for alle.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            I dag hjelper vi hundrevis av norske familier med å administrere og forstå sin helseinformasjon på en trygg og strukturert måte.
+          </p>
+        </div>
+        <div class="bg-primary-50 rounded-2xl p-10 flex items-center justify-center" aria-hidden="true">
+          <svg class="w-32 h-32 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 bg-gray-50" aria-labelledby="values-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="values-heading" class="text-3xl font-bold text-gray-900 text-center mb-12">Våre verdier</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {values.map((value) => (
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+            <h3 class="text-xl font-semibold text-primary-700 mb-3">{value.title}</h3>
+            <p class="text-gray-500">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center" aria-labelledby="about-cta-heading">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="about-cta-heading" class="text-3xl font-bold text-gray-900 mb-4">Bli en del av Helsepasset</h2>
+      <p class="text-gray-500 mb-8 text-lg">Kontakt oss for å lære mer om hvordan vi kan hjelpe deg og din familie.</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors text-lg"
+        data-umami-event="about-cta-click"
+      >
+        Ta kontakt
+      </a>
+    </div>
+  </section>
+</Layout>
