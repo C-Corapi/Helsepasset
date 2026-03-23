@@ -166,6 +166,7 @@ import Layout from '../layouts/Layout.astro';
 <script>
   import { createReferral } from '../utils/supabase';
   import type { ReferralRecord } from '../utils/supabase';
+  import { isValidEmail } from '../utils/validation';
 
   const form = document.getElementById('refer-form') as HTMLFormElement | null;
   const successEl = document.getElementById('refer-success');
@@ -201,12 +202,11 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(get('avsender_epost'))) {
+    if (!isValidEmail(get('avsender_epost'))) {
       showError('Vennligst oppgi en gyldig e-postadresse for deg selv.');
       return;
     }
-    if (!emailRegex.test(get('mottaker_epost'))) {
+    if (!isValidEmail(get('mottaker_epost'))) {
       showError('Vennligst oppgi en gyldig e-postadresse for mottakeren.');
       return;
     }

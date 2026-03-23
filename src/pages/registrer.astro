@@ -219,7 +219,7 @@ import Layout from '../layouts/Layout.astro';
           />
           <label for="samtykke" class="text-sm text-gray-600">
             Jeg samtykker til at Helsepasset lagrer mine opplysninger i henhold til
-            <span class="text-primary-600 font-medium">personvernvilkårene</span>.
+            <a href="/about" class="text-primary-600 font-medium underline hover:text-primary-700">personvernvilkårene</a>.
             <span class="text-red-500" aria-label="obligatorisk">*</span>
           </label>
         </div>
@@ -247,6 +247,7 @@ import Layout from '../layouts/Layout.astro';
 <script>
   import { createAccount } from '../utils/supabase';
   import type { AccountRecord } from '../utils/supabase';
+  import { isValidEmail, isValidPostalCode } from '../utils/validation';
 
   const form = document.getElementById('register-form') as HTMLFormElement | null;
   const successEl = document.getElementById('register-success');
@@ -281,14 +282,14 @@ import Layout from '../layouts/Layout.astro';
 
     // Email validation
     const epost = get('epost');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(epost)) {
+    if (!isValidEmail(epost)) {
       showError('Vennligst oppgi en gyldig e-postadresse.');
       return;
     }
 
     // Postal code validation (4 digits for Norway)
     const postnummer = get('postnummer');
-    if (!/^[0-9]{4}$/.test(postnummer)) {
+    if (!isValidPostalCode(postnummer)) {
       showError('Postnummer må bestå av 4 siffer.');
       return;
     }

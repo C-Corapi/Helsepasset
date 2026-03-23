@@ -6,7 +6,7 @@
  *
  * Environment variables required (see .env.example):
  *   PUBLIC_SUPABASE_URL      – your Supabase project URL
- *   PUBLIC_SUPABASE_ANON_KEY – the public anon/service-role key
+ *   PUBLIC_SUPABASE_ANON_KEY – the public anon key (never use the service-role key client-side)
  */
 
 import { createClient } from '@supabase/supabase-js';
