@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 
 const values = [
-  { title: 'Lorem ipsum', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { title: 'Dolor sit', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna.' },
-  { title: 'Amet elit', description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.' },
+  { title: '[Company value 1 – e.g. a word like "Integrity" or "Trust"]', description: '[One sentence describing what this value means in practice for Helsepasset]' },
+  { title: '[Company value 2 – e.g. "Accessibility" or "Simplicity"]', description: '[One sentence describing what this value means in practice for Helsepasset]' },
+  { title: '[Company value 3 – e.g. "Innovation" or "Care"]', description: '[One sentence describing what this value means in practice for Helsepasset]' },
 ];
 ---
 
@@ -12,9 +12,9 @@ const values = [
   <!-- Page header -->
   <section class="bg-gradient-to-br from-primary-700 to-primary-500 text-white py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Lorem ipsum dolor</h1>
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">[About page headline – e.g. "About Helsepasset"]</h1>
       <p class="text-primary-100 text-lg max-w-2xl mx-auto">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+        [1–2 sentence company intro – who are Helsepasset, and what is their overall mission?]
       </p>
     </div>
   </section>
@@ -24,15 +24,15 @@ const values = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 id="story-heading" class="text-3xl font-bold text-gray-900 mb-5">Dolor sit amet</h2>
+          <h2 id="story-heading" class="text-3xl font-bold text-gray-900 mb-5">[Company story section heading – e.g. "Our story"]</h2>
           <p class="text-gray-600 leading-relaxed mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            [Company origin story – how and why was Helsepasset founded? What gap in the market did it address?]
           </p>
           <p class="text-gray-600 leading-relaxed mb-4">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            [Company mission and approach – what is the core mission, and how does Helsepasset pursue it?]
           </p>
           <p class="text-gray-600 leading-relaxed">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            [Current impact or reach – how many users/families does Helsepasset serve today, and what results have they seen?]
           </p>
         </div>
         <div class="bg-primary-50 rounded-2xl p-10 flex items-center justify-center" aria-hidden="true">
@@ -56,7 +56,7 @@ const values = [
   <!-- Values -->
   <section class="py-20 bg-gray-50" aria-labelledby="values-heading">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="values-heading" class="text-3xl font-bold text-gray-900 text-center mb-12">Consectetur adipiscing</h2>
+      <h2 id="values-heading" class="text-3xl font-bold text-gray-900 text-center mb-12">[Values section heading – e.g. "Our values"]</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {values.map((value) => (
           <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
@@ -71,9 +71,9 @@ const values = [
   <!-- Contact form -->
   <section class="py-20" aria-labelledby="contact-form-heading">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="contact-form-heading" class="text-3xl font-bold text-gray-900 mb-4 text-center">Lorem ipsum kontakt</h2>
+      <h2 id="contact-form-heading" class="text-3xl font-bold text-gray-900 mb-4 text-center">[Contact section heading – e.g. "Get in touch"]</h2>
       <p class="text-gray-500 mb-8 text-lg text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        [One sentence inviting visitors to reach out – what kinds of enquiries are welcome?]
       </p>
       <form
         name="contact-message-form"
