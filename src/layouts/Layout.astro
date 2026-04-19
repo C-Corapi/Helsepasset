@@ -296,7 +296,7 @@ const navLinks = [
         iconX?.classList.remove('hidden');
         menuToggle?.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
-        (menuPanel?.querySelector('a, button') as HTMLElement | null)?.focus();
+        menuClose?.focus();
       }
 
       function hideMenu() {
