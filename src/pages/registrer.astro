@@ -25,7 +25,7 @@ import Layout from '../layouts/Layout.astro';
         role="alert"
       >
         <p class="font-semibold">Konto opprettet!</p>
-        <p class="text-sm mt-1">Takk for registreringen. Vi tar kontakt med mer informasjon snart.</p>
+        <p class="text-sm mt-1">Takk for registreringen. Sjekk e-posten din for å bekrefte kontoen.</p>
         <a href="/refer" class="inline-block mt-3 text-sm font-medium text-primary-600 hover:text-primary-700 underline">
           Anbefal Helsepasset til noen du kjenner →
         </a>
@@ -99,127 +99,70 @@ import Layout from '../layouts/Layout.astro';
           />
         </div>
 
-        <!-- Telefon -->
+        <!-- Passord -->
         <div>
-          <label for="telefon" class="block text-sm font-medium text-gray-700 mb-1.5">
-            Telefonnummer <span class="text-red-500" aria-label="obligatorisk">*</span>
+          <label for="passord" class="block text-sm font-medium text-gray-700 mb-1.5">
+            Passord <span class="text-red-500" aria-label="obligatorisk">*</span>
           </label>
           <input
-            type="tel"
-            id="telefon"
-            name="telefon"
+            type="password"
+            id="passord"
+            name="passord"
             required
-            autocomplete="tel"
+            minlength="8"
+            autocomplete="new-password"
             class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
-            placeholder="+47 000 00 000"
+            placeholder="Minst 8 tegn"
             aria-required="true"
           />
         </div>
 
-        <!-- Fødselsdato -->
+        <!-- Bekreft passord -->
         <div>
-          <label for="fodselsdato" class="block text-sm font-medium text-gray-700 mb-1.5">
-            Fødselsdato <span class="text-red-500" aria-label="obligatorisk">*</span>
+          <label for="passord-bekreft" class="block text-sm font-medium text-gray-700 mb-1.5">
+            Gjenta passord <span class="text-red-500" aria-label="obligatorisk">*</span>
           </label>
           <input
-            type="date"
-            id="fodselsdato"
-            name="fodselsdato"
+            type="password"
+            id="passord-bekreft"
+            name="passord-bekreft"
             required
-            autocomplete="bday"
+            minlength="8"
+            autocomplete="new-password"
             class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
+            placeholder="Gjenta passordet ditt"
             aria-required="true"
           />
         </div>
 
-        <!-- Kjønn -->
-        <div>
-          <label for="kjonn" class="block text-sm font-medium text-gray-700 mb-1.5">
-            Kjønn <span class="text-red-500" aria-label="obligatorisk">*</span>
-          </label>
-          <select
-            id="kjonn"
-            name="kjonn"
-            required
-            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none bg-white"
-            aria-required="true"
-          >
-            <option value="" disabled selected>Velg kjønn</option>
-            <option value="mann">Mann</option>
-            <option value="kvinne">Kvinne</option>
-            <option value="annet">Annet</option>
-            <option value="ikke_oppgitt">Ønsker ikke å oppgi</option>
-          </select>
-        </div>
-
-        <!-- Adresse -->
-        <div>
-          <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1.5">
-            Adresse <span class="text-red-500" aria-label="obligatorisk">*</span>
-          </label>
-          <input
-            type="text"
-            id="adresse"
-            name="adresse"
-            required
-            autocomplete="street-address"
-            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
-            placeholder="Gateadresse 1"
-            aria-required="true"
-          />
-        </div>
-
-        <!-- Postnummer / Sted -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
-            <label for="postnummer" class="block text-sm font-medium text-gray-700 mb-1.5">
-              Postnummer <span class="text-red-500" aria-label="obligatorisk">*</span>
-            </label>
-            <input
-              type="text"
-              id="postnummer"
-              name="postnummer"
-              required
-              autocomplete="postal-code"
-              inputmode="numeric"
-              pattern="[0-9]{4}"
-              maxlength="4"
-              class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
-              placeholder="0001"
-              aria-required="true"
-            />
-          </div>
-
-          <div>
-            <label for="sted" class="block text-sm font-medium text-gray-700 mb-1.5">
-              Sted <span class="text-red-500" aria-label="obligatorisk">*</span>
-            </label>
-            <input
-              type="text"
-              id="sted"
-              name="sted"
-              required
-              autocomplete="address-level2"
-              class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors outline-none"
-              placeholder="Oslo"
-              aria-required="true"
-            />
-          </div>
-        </div>
-
-        <!-- Samtykke -->
+        <!-- Samtykke til vilkår -->
         <div class="flex items-start gap-3">
           <input
             type="checkbox"
-            id="samtykke"
-            name="samtykke"
+            id="samtykke-vilkar"
+            name="samtykke-vilkar"
             required
             class="mt-1 h-4 w-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
             aria-required="true"
           />
-          <label for="samtykke" class="text-sm text-gray-600">
-            Jeg samtykker til at Helsepasset lagrer mine opplysninger i henhold til
-            <a href="/about" class="text-primary-600 font-medium underline hover:text-primary-700">personvernvilkårene</a>.
+          <label for="samtykke-vilkar" class="text-sm text-gray-600">
+            Jeg godtar <a href="/about" class="text-primary-600 font-medium underline hover:text-primary-700">vilkår og betingelser</a>.
+            <span class="text-red-500" aria-label="obligatorisk">*</span>
+          </label>
+        </div>
+
+        <!-- Samtykke til nyhetsbrev -->
+        <div class="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="samtykke-nyhetsbrev"
+            name="samtykke-nyhetsbrev"
+            required
+            class="mt-1 h-4 w-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+            aria-required="true"
+          />
+          <label for="samtykke-nyhetsbrev" class="text-sm text-gray-600">
+            Jeg samtykker til å motta nyhetsbrev.
             <span class="text-red-500" aria-label="obligatorisk">*</span>
           </label>
         </div>
@@ -247,7 +190,7 @@ import Layout from '../layouts/Layout.astro';
 <script>
   import { createAccount } from '../utils/supabase';
   import type { AccountRecord } from '../utils/supabase';
-  import { isValidEmail, isValidPostalCode } from '../utils/validation';
+  import { isValidEmail } from '../utils/validation';
 
   const form = document.getElementById('register-form') as HTMLFormElement | null;
   const successEl = document.getElementById('register-success');
@@ -264,10 +207,11 @@ import Layout from '../layouts/Layout.astro';
     // Gather values
     const get = (id: string) =>
       (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null)?.value.trim() ?? '';
-    const samtykke = (document.getElementById('samtykke') as HTMLInputElement | null)?.checked ?? false;
+    const samtykkeVilkar = (document.getElementById('samtykke-vilkar') as HTMLInputElement | null)?.checked ?? false;
+    const samtykkeNyhetsbrev = (document.getElementById('samtykke-nyhetsbrev') as HTMLInputElement | null)?.checked ?? false;
 
     // Basic client-side validation
-    const required = ['fornavn', 'etternavn', 'epost', 'telefon', 'fodselsdato', 'kjonn', 'adresse', 'postnummer', 'sted'];
+    const required = ['fornavn', 'etternavn', 'epost', 'passord', 'passord-bekreft'];
     for (const id of required) {
       if (!get(id)) {
         showError('Vennligst fyll ut alle obligatoriske felt.');
@@ -275,8 +219,13 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    if (!samtykke) {
-      showError('Du må samtykke til personvernvilkårene for å opprette en konto.');
+    if (!samtykkeVilkar) {
+      showError('Du må godta vilkår og betingelser for å opprette en konto.');
+      return;
+    }
+
+    if (!samtykkeNyhetsbrev) {
+      showError('Du må samtykke til å motta nyhetsbrev for å opprette en konto.');
       return;
     }
 
@@ -287,10 +236,15 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
 
-    // Postal code validation (4 digits for Norway)
-    const postnummer = get('postnummer');
-    if (!isValidPostalCode(postnummer)) {
-      showError('Postnummer må bestå av 4 siffer.');
+    const passord = get('passord');
+    const passordBekreft = get('passord-bekreft');
+    if (passord.length < 8) {
+      showError('Passordet må være minst 8 tegn.');
+      return;
+    }
+
+    if (passord !== passordBekreft) {
+      showError('Passordene er ikke like.');
       return;
     }
 
@@ -298,13 +252,8 @@ import Layout from '../layouts/Layout.astro';
       fornavn: get('fornavn'),
       etternavn: get('etternavn'),
       epost,
-      telefon: get('telefon'),
-      fodselsdato: get('fodselsdato'),
-      kjonn: get('kjonn'),
-      adresse: get('adresse'),
-      postnummer,
-      sted: get('sted'),
-      samtykke,
+      samtykke_vilkar: samtykkeVilkar,
+      nyhetsbrev: samtykkeNyhetsbrev,
     };
 
     // Track with Umami
@@ -313,7 +262,7 @@ import Layout from '../layouts/Layout.astro';
       window.umami.track('register-form-submitted');
     }
 
-    const result = await createAccount(data);
+    const result = await createAccount(data, passord);
 
     if (result.success) {
       successEl?.classList.remove('hidden');

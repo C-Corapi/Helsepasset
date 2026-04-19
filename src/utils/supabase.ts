@@ -27,18 +27,13 @@ export const supabase =
 /*  Type definitions                                                  */
 /* ------------------------------------------------------------------ */
 
-/** Shape of a row in the `accounts` table. */
+/** Shape of account sign-up metadata. */
 export interface AccountRecord {
   fornavn: string;
   etternavn: string;
   epost: string;
-  telefon: string;
-  fodselsdato: string;
-  kjonn: string;
-  adresse: string;
-  postnummer: string;
-  sted: string;
-  samtykke: boolean;
+  samtykke_vilkar: boolean;
+  nyhetsbrev: boolean;
 }
 
 /** Shape of a row in the `referrals` table. */
@@ -55,22 +50,37 @@ export interface ReferralRecord {
 /* ------------------------------------------------------------------ */
 
 /**
- * Insert a new account registration into the `accounts` table.
+ * Create a new authenticated user account.
  *
- * @returns The inserted row on success, or an error message.
+ * Uses Supabase Auth sign-up with email/password and stores
+ * additional profile metadata in `user_metadata`.
+ *
+ * @returns Success flag, or an error message.
  */
 export async function createAccount(
   data: AccountRecord,
+  password: string,
 ): Promise<{ success: boolean; error?: string }> {
   if (!supabase) {
-    console.warn('Supabase is not configured – skipping insert.');
+    console.warn('Supabase is not configured – skipping auth sign-up.');
     return { success: true };
   }
 
-  const { error } = await supabase.from('accounts').insert([data]);
+  const { error } = await supabase.auth.signUp({
+    email: data.epost,
+    password,
+    options: {
+      data: {
+        fornavn: data.fornavn,
+        etternavn: data.etternavn,
+        samtykke_vilkar: data.samtykke_vilkar,
+        nyhetsbrev: data.nyhetsbrev,
+      },
+    },
+  });
 
   if (error) {
-    console.error('Supabase insert error (accounts):', error.message);
+    console.error('Supabase sign-up error:', error.message);
     return { success: false, error: error.message };
   }
 
