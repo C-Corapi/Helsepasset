@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 36 33% 95%;        /* warm sand #F7F3EC */
+    --foreground: 155 50% 11%;       /* ink #0F2A20 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 155 50% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 155 50% 11%;
+
+    /* Brand */
+    --primary: 152 42% 21%;          /* deep forest #1F4D3A */
+    --primary-foreground: 138 38% 94%;
+
+    --secondary: 138 38% 94%;        /* soft mint #EAF5EE */
+    --secondary-foreground: 152 42% 21%;
+
+    --accent: 22 82% 75%;            /* peach #F4B58A */
+    --accent-foreground: 155 50% 11%;
+
+    --muted: 138 25% 90%;
+    --muted-foreground: 155 18% 35%;
+
+    --sage: 144 28% 61%;             /* #7FB99B */
+    --sage-foreground: 155 50% 11%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 138 25% 86%;
+    --input: 138 25% 86%;
+    --ring: 22 82% 65%;              /* peach focus ring */
+
+    --radius: 1.25rem;               /* 20px */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus styles for all interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 1px 2px hsl(152 42% 21% / 0.04), 0 12px 32px -12px hsl(152 42% 21% / 0.18);
+  }
+  .shadow-soft-lg {
+    box-shadow: 0 2px 4px hsl(152 42% 21% / 0.05), 0 24px 48px -16px hsl(152 42% 21% / 0.22);
+  }
+}
