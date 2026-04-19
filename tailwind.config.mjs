@@ -4,35 +4,41 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50:  '#f4fbf7',
-          100: '#e8f5ed',
-          200: '#d0eadb',
-          300: '#b1dcc4',
-          400: '#8dcca6',
-          500: '#6eba85',
-          600: '#57a56f',
-          700: '#44875a',
-          800: '#376c49',
-          900: '#2f583e',
-          950: '#183123',
-        },
-        accent: {
-          50:  '#fff7ed',
-          100: '#ffecd5',
-          200: '#fed6aa',
-          300: '#fdb373',
-          400: '#fb8a3b',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-          950: '#431407',
-        },
+        /* Helsepasset palette — mapped from CSS custom properties */
+        sand:       'hsl(var(--hp-sand))',
+        ink:        'hsl(var(--hp-ink))',
+        card:       { DEFAULT: 'hsl(var(--hp-card))', ink: 'hsl(var(--hp-card-ink))' },
+        forest:     { DEFAULT: 'hsl(var(--hp-forest))', contrast: 'hsl(var(--hp-forest-contrast))' },
+        mint:       { DEFAULT: 'hsl(var(--hp-mint))', contrast: 'hsl(var(--hp-mint-contrast))' },
+        peach:      { DEFAULT: 'hsl(var(--hp-peach))', contrast: 'hsl(var(--hp-peach-contrast))' },
+        muted:      { DEFAULT: 'hsl(var(--hp-muted))', ink: 'hsl(var(--hp-muted-ink))' },
+        sage:       { DEFAULT: 'hsl(var(--hp-sage))', ink: 'hsl(var(--hp-sage-ink))' },
+        danger:     { DEFAULT: 'hsl(var(--hp-danger))', contrast: 'hsl(var(--hp-danger-contrast))' },
+        edge:       'hsl(var(--hp-edge))',
+        field:      'hsl(var(--hp-field))',
+        focus:      'hsl(var(--hp-focus))',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans:  ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Fraunces', 'Georgia', 'serif'],
+      },
+      borderRadius: {
+        '3xl': '1.5rem',
+        '4xl': '2rem',
+      },
+      keyframes: {
+        'hp-rise': {
+          '0%':   { opacity: '0', transform: 'translateY(14px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'hp-drift': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%':      { transform: 'translateY(-7px)' },
+        },
+      },
+      animation: {
+        'hp-rise':  'hp-rise 0.55s ease-out both',
+        'hp-drift': 'hp-drift 5.5s ease-in-out infinite',
       },
     },
   },

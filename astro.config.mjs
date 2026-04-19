@@ -4,6 +4,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   adapter: netlify(),
-  integrations: [tailwind()],
+  integrations: [tailwind({ applyBaseStyles: false })],
   output: 'static',
 });

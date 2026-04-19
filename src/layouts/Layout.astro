@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -7,6 +9,13 @@ interface Props {
 const { title, description = 'Helsepasset – Trygghet hvor enn du er' } = Astro.props;
 const umamiUrl = import.meta.env.PUBLIC_UMAMI_URL;
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Hjem' },
+  { href: '/about', label: 'Om oss' },
+  { href: '/registrer', label: 'Registrer' },
+];
 ---
 
 <!doctype html>
@@ -17,7 +26,26 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Helsepasset`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${title} | Helsepasset`} />
+    <meta name="twitter:description" content={description} />
+
     <title>{title} | Helsepasset</title>
+
+    <!-- Fonts: Inter + Fraunces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     {import.meta.env.PROD && umamiUrl && umamiWebsiteId && (
       <script
@@ -27,21 +55,33 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
       ></script>
     )}
   </head>
-  <body class="bg-white text-gray-800 antialiased">
+  <body>
+    <!-- Skip to content -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-forest focus:text-forest-contrast focus:rounded-full focus:text-sm focus:font-medium"
+    >
+      Hopp til innhold
+    </a>
+
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-100 shadow-sm">
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Hovednavigasjon">
+    <header
+      id="site-header"
+      class="sticky top-0 z-50 bg-sand/70 backdrop-blur-md border-b border-transparent transition-colors duration-300"
+    >
+      <nav class="max-w-[1200px] mx-auto px-6" aria-label="Hovedmeny">
         <div class="flex items-center justify-between h-16">
-          <a href="/" class="flex items-center space-x-2 font-bold text-xl text-primary-700 hover:text-primary-600 transition-all duration-200 ease-in-out" aria-label="Helsepasset – hjem">
-            <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 56 64" fill="none" aria-hidden="true">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-2 font-serif text-xl font-semibold text-ink hover:opacity-80 transition-opacity" aria-label="Helsepasset – hjem">
+            <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 56 64" fill="none" aria-hidden="true">
               <rect x="6" y="6" width="38" height="52" rx="3" stroke="currentColor" stroke-width="2.5"/>
               <path d="M36 6h8v8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
               <line x1="36" y1="6" x2="44" y2="14" stroke="currentColor" stroke-width="1.5"/>
               <circle cx="25" cy="32" r="12" stroke="currentColor" stroke-width="2"/>
               <line x1="13" y1="32" x2="37" y2="32" stroke="currentColor" stroke-width="1.5"/>
               <ellipse cx="25" cy="32" rx="5.5" ry="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="25" y1="24" x2="25" y2="40" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
-              <line x1="17" y1="32" x2="33" y2="32" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+              <line x1="25" y1="24" x2="25" y2="40" stroke="hsl(var(--hp-peach))" stroke-width="3" stroke-linecap="round"/>
+              <line x1="17" y1="32" x2="33" y2="32" stroke="hsl(var(--hp-peach))" stroke-width="3" stroke-linecap="round"/>
               <line x1="13" y1="50" x2="30" y2="50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               <line x1="13" y1="54" x2="24" y2="54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
@@ -49,14 +89,26 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
           </a>
 
           <!-- Desktop menu -->
-          <ul class="hidden md:flex items-center space-x-8" role="list">
-            <li><a href="/" class="text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out">Hjem</a></li>
-            <li><a href="/about" class="text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out">Om oss</a></li>
-            <li><a href="/refer" class="text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out">Anbefal</a></li>
+          <ul class="hidden md:flex items-center gap-8" role="list">
+            {navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[
+                    'text-sm font-medium transition-colors duration-200 relative',
+                    currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                      ? 'text-ink after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-peach after:rounded-full'
+                      : 'text-muted-ink hover:text-ink',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
             <li>
               <a
                 href="/registrer"
-                class="bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 hover:-translate-y-0.5 transition-all duration-200 ease-in-out"
+                class="bg-forest text-forest-contrast text-sm font-medium px-6 py-2.5 rounded-full hover:bg-forest/90 hover:shadow-hp-lg transition-all duration-200"
                 data-umami-event="nav-cta-click"
               >
                 Opprett konto
@@ -68,100 +120,231 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
           <button
             id="mobile-menu-btn"
             type="button"
-            class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 transition-all duration-200 ease-in-out"
-            aria-controls="mobile-menu"
+            class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-ink hover:bg-mint transition-colors"
+            aria-controls="mobile-menu-panel"
             aria-expanded="false"
             aria-label="Åpne meny"
           >
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
+      </nav>
 
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden pb-4" role="menu">
-          <ul class="flex flex-col space-y-2" role="list">
-            <li><a href="/" class="block px-3 py-2 text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out rounded-md hover:bg-gray-50" role="menuitem">Hjem</a></li>
-            <li><a href="/about" class="block px-3 py-2 text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out rounded-md hover:bg-gray-50" role="menuitem">Om oss</a></li>
-            <li><a href="/refer" class="block px-3 py-2 text-gray-600 hover:text-primary-600 font-medium transition-all duration-200 ease-in-out rounded-md hover:bg-gray-50" role="menuitem">Anbefal</a></li>
+      <!-- Mobile menu panel (slide-over) -->
+      <div
+        id="mobile-menu-overlay"
+        class="fixed inset-0 bg-ink/30 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"
+        aria-hidden="true"
+      ></div>
+      <div
+        id="mobile-menu-panel"
+        class="fixed top-0 right-0 h-full w-72 bg-card z-50 shadow-hp-lg transform translate-x-full transition-transform duration-300 md:hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobilmeny"
+      >
+        <div class="flex items-center justify-between px-6 h-16 border-b border-edge">
+          <span class="font-serif font-semibold text-ink">Meny</span>
+          <button
+            id="mobile-menu-close"
+            type="button"
+            class="p-2 rounded-lg text-ink hover:bg-mint transition-colors"
+            aria-label="Lukk meny"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <ul class="px-6 py-6 space-y-2" role="list">
+          {navLinks.map((link) => (
             <li>
               <a
-                href="/registrer"
-                class="block px-3 py-2 bg-primary-600 text-white font-medium rounded-md hover:bg-primary-700 hover:-translate-y-0.5 transition-all duration-200 ease-in-out text-center"
-                data-umami-event="mobile-nav-cta-click"
-                role="menuitem"
+                href={link.href}
+                class:list={[
+                  'block px-4 py-3 rounded-xl text-sm font-medium transition-colors',
+                  currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                    ? 'bg-mint text-ink'
+                    : 'text-muted-ink hover:bg-mint hover:text-ink',
+                ]}
               >
-                Opprett konto
+                {link.label}
               </a>
             </li>
-          </ul>
-        </div>
-      </nav>
+          ))}
+          <li class="pt-4">
+            <a
+              href="/registrer"
+              class="block w-full text-center bg-forest text-forest-contrast text-sm font-medium px-6 py-3 rounded-full hover:bg-forest/90 transition-colors"
+              data-umami-event="mobile-nav-cta-click"
+            >
+              Opprett konto
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <!-- Page content -->
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer class="bg-ink text-forest-contrast/70 mt-0">
+      <div class="max-w-[1200px] mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- Brand -->
           <div>
-            <div class="flex items-center space-x-2 font-bold text-xl text-white mb-3">
-              <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 56 64" fill="none" aria-hidden="true">
+            <div class="flex items-center gap-2 font-serif text-lg font-semibold text-forest-contrast mb-3">
+              <svg class="w-7 h-7 flex-shrink-0" viewBox="0 0 56 64" fill="none" aria-hidden="true">
                 <rect x="6" y="6" width="38" height="52" rx="3" stroke="currentColor" stroke-width="2.5"/>
                 <path d="M36 6h8v8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
                 <line x1="36" y1="6" x2="44" y2="14" stroke="currentColor" stroke-width="1.5"/>
                 <circle cx="25" cy="32" r="12" stroke="currentColor" stroke-width="2"/>
                 <line x1="13" y1="32" x2="37" y2="32" stroke="currentColor" stroke-width="1.5"/>
                 <ellipse cx="25" cy="32" rx="5.5" ry="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                <line x1="25" y1="24" x2="25" y2="40" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
-                <line x1="17" y1="32" x2="33" y2="32" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+                <line x1="25" y1="24" x2="25" y2="40" stroke="hsl(var(--hp-peach))" stroke-width="3" stroke-linecap="round"/>
+                <line x1="17" y1="32" x2="33" y2="32" stroke="hsl(var(--hp-peach))" stroke-width="3" stroke-linecap="round"/>
                 <line x1="13" y1="50" x2="30" y2="50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <line x1="13" y1="54" x2="24" y2="54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
-              <span>Trygghet hvor enn du er</span>
+              <span>Helsepasset</span>
             </div>
-            <p class="text-sm text-gray-400">Trygghet hvor enn du er.</p>
+            <p class="text-sm">Ditt helsepass, alltid med deg.</p>
           </div>
 
+          <!-- Produkt -->
           <div>
-            <h3 class="font-semibold text-white mb-3">Navigasjon</h3>
+            <h3 class="font-semibold text-forest-contrast mb-4 text-sm uppercase tracking-wider">Produkt</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="/" class="hover:text-white transition-colors">Hjem</a></li>
-              <li><a href="/about" class="hover:text-white transition-colors">Om oss</a></li>
-              <li><a href="/registrer" class="hover:text-white transition-colors">Opprett konto</a></li>
-              <li><a href="/refer" class="hover:text-white transition-colors">Anbefal</a></li>
+              <li><a href="/" class="hover:text-forest-contrast transition-colors">Hjem</a></li>
+              <li><a href="/about" class="hover:text-forest-contrast transition-colors">Om oss</a></li>
+              <li><a href="/registrer" class="hover:text-forest-contrast transition-colors">Registrer</a></li>
+              <li><a href="/refer" class="hover:text-forest-contrast transition-colors">Anbefal</a></li>
             </ul>
           </div>
 
+          <!-- Selskap -->
           <div>
-            <h3 class="font-semibold text-white mb-3">Kontakt</h3>
-            <address class="not-italic text-sm text-gray-400 space-y-1">
-              <p>post@helsepasset.no</p>
-              <p>Oslo, Norge</p>
-            </address>
+            <h3 class="font-semibold text-forest-contrast mb-4 text-sm uppercase tracking-wider">Selskap</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/about" class="hover:text-forest-contrast transition-colors">Personvern</a></li>
+              <li><a href="/about" class="hover:text-forest-contrast transition-colors">Vilkår</a></li>
+              <li><a href="mailto:post@helsepasset.no" class="hover:text-forest-contrast transition-colors">Kontakt</a></li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div>
+            <h3 class="font-semibold text-forest-contrast mb-4 text-sm uppercase tracking-wider">Hold deg oppdatert</h3>
+            <form class="flex gap-2" aria-label="Nyhetsbrev">
+              <label for="newsletter-email" class="sr-only">E-postadresse</label>
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder="Din e-post"
+                class="flex-1 min-w-0 px-4 py-2 rounded-full bg-forest-contrast/10 border border-forest-contrast/20 text-forest-contrast text-sm placeholder:text-forest-contrast/40 focus:outline-none focus:ring-2 focus:ring-focus focus:ring-offset-0"
+                aria-required="true"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 bg-peach text-peach-contrast text-sm font-medium rounded-full hover:brightness-105 transition-all shadow-hp whitespace-nowrap"
+              >
+                Meld meg på
+              </button>
+            </form>
           </div>
         </div>
 
-        <div class="border-t border-gray-800 mt-10 pt-6 text-sm text-gray-500 text-center">
-          <p>&copy; {new Date().getFullYear()} Helsepasset. Alle rettigheter forbeholdt.</p>
+        <div class="border-t border-forest-contrast/10 mt-12 pt-6 text-sm text-forest-contrast/40 text-center">
+          <p>&copy; Helsepasset {new Date().getFullYear()} · Laget i Norge</p>
         </div>
       </div>
     </footer>
 
-    <!-- Mobile menu toggle script -->
+    <!-- Header scroll effect + Mobile menu -->
     <script>
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      btn?.addEventListener('click', () => {
-        const isOpen = menu?.classList.toggle('hidden') === false;
-        btn.setAttribute('aria-expanded', String(isOpen));
-        btn.setAttribute('aria-label', isOpen ? 'Lukk meny' : 'Åpne meny');
+      // Show header border when page is scrolled
+      const header = document.getElementById('site-header');
+      function onScroll() {
+        if (!header) return;
+        header.style.borderBottomColor = window.scrollY > 10
+          ? 'hsl(138 25% 86%)'
+          : 'transparent';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile slide-over menu
+      const menuToggle = document.getElementById('mobile-menu-btn');
+      const menuClose = document.getElementById('mobile-menu-close');
+      const menuOverlay = document.getElementById('mobile-menu-overlay');
+      const menuPanel = document.getElementById('mobile-menu-panel');
+      const iconBars = document.getElementById('menu-icon-open');
+      const iconX = document.getElementById('menu-icon-close');
+
+      function showMenu() {
+        menuOverlay?.classList.remove('hidden');
+        menuPanel?.classList.replace('translate-x-full', 'translate-x-0');
+        iconBars?.classList.add('hidden');
+        iconX?.classList.remove('hidden');
+        menuToggle?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        menuClose?.focus();
+      }
+
+      function hideMenu() {
+        menuOverlay?.classList.add('hidden');
+        menuPanel?.classList.replace('translate-x-0', 'translate-x-full');
+        iconBars?.classList.remove('hidden');
+        iconX?.classList.add('hidden');
+        menuToggle?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        menuToggle?.focus();
+      }
+
+      menuToggle?.addEventListener('click', showMenu);
+      menuClose?.addEventListener('click', hideMenu);
+      menuOverlay?.addEventListener('click', hideMenu);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuToggle?.getAttribute('aria-expanded') === 'true') hideMenu();
       });
+    </script>
+
+    <!-- Scroll-reveal: elements with data-hp-reveal fade up once visible -->
+    <script>
+      (function initScrollReveal() {
+        const targets = document.querySelectorAll('[data-hp-reveal]');
+        if (!targets.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          targets.forEach(el => { (el as HTMLElement).style.opacity = '1'; });
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add('animate-hp-rise');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+
+        targets.forEach(el => {
+          (el as HTMLElement).style.opacity = '0';
+          io.observe(el);
+        });
+      })();
     </script>
   </body>
 </html>

@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Helsepasset Design System — custom tokens */
+
+    /* Surfaces */
+    --hp-sand: 36 33% 95%;           /* warm sand #F7F3EC */
+    --hp-ink: 155 50% 11%;           /* dark ink #0F2A20 */
+
+    --hp-card: 0 0% 100%;
+    --hp-card-ink: 155 50% 11%;
+
+    /* Brand greens */
+    --hp-forest: 152 42% 21%;        /* deep forest #1F4D3A */
+    --hp-forest-contrast: 138 38% 94%;
+
+    --hp-mint: 138 38% 94%;          /* soft mint #EAF5EE */
+    --hp-mint-contrast: 152 42% 21%;
+
+    /* Accent */
+    --hp-peach: 22 82% 75%;          /* peach #F4B58A */
+    --hp-peach-contrast: 155 50% 11%;
+
+    /* Muted / secondary text */
+    --hp-muted: 138 25% 90%;
+    --hp-muted-ink: 155 18% 35%;
+
+    /* Sage (mid-green) */
+    --hp-sage: 144 28% 61%;          /* #7FB99B */
+    --hp-sage-ink: 155 50% 11%;
+
+    /* Utility */
+    --hp-danger: 0 75% 55%;
+    --hp-danger-contrast: 0 0% 100%;
+
+    --hp-edge: 138 25% 86%;
+    --hp-field: 138 25% 86%;
+    --hp-focus: 22 82% 65%;          /* peach focus ring */
+
+    --hp-rounding: 1.25rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: hsl(var(--hp-sand));
+    color: hsl(var(--hp-ink));
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus ring for all interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid hsl(var(--hp-focus));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .shadow-hp {
+    box-shadow:
+      0 1px 3px hsl(152 42% 21% / 0.05),
+      0 10px 28px -8px hsl(152 42% 21% / 0.16);
+  }
+  .shadow-hp-lg {
+    box-shadow:
+      0 2px 6px hsl(152 42% 21% / 0.06),
+      0 20px 44px -12px hsl(152 42% 21% / 0.20);
+  }
+}
