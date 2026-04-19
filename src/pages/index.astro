@@ -4,17 +4,17 @@ import Layout from '../layouts/Layout.astro';
 const features = [
   {
     title: 'Trygg og pålitelig',
-    description: 'Vi leverer helsetjenester med høyeste standard for sikkerhet og pålitelighet for deg og din familie.',
+    description: '[KUNDEINNHOLD: Beskrivelse av sikkerhet og pålitelighet – f.eks. kryptering, GDPR, norsk hosting]',
     iconPath: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   },
   {
     title: 'Personlig oppfølging',
-    description: 'Dedikert team som følger deg opp gjennom hele prosessen med personlig og profesjonell service.',
+    description: '[KUNDEINNHOLD: Beskrivelse av personlig oppfølging – f.eks. kundeservice, veiledning, støtte]',
     iconPath: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
   },
   {
     title: 'Enkel administrasjon',
-    description: 'Smidig håndtering av helsepass og dokumentasjon, slik at du kan fokusere på det viktigste.',
+    description: '[KUNDEINNHOLD: Beskrivelse av enkel administrasjon – f.eks. dokumenthåndtering, helsepass, oversikt]',
     iconPath: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
   },
 ];
@@ -64,7 +64,7 @@ const faqItems = [
     "@type": "Organization",
     "name": "Helsepasset",
     "url": Astro.url.origin,
-    "description": "Helsepasset samler all viktig helseinformasjon på ett sted."
+    "description": "[KUNDEINNHOLD: Kort beskrivelse av Helsepasset]"
   })} />
 
   <!-- ========== 1. HERO ========== -->
@@ -80,7 +80,7 @@ const faqItems = [
           Ditt helsepass — <span class="text-peach">hvor enn du er</span>
         </h1>
         <p class="text-muted-ink text-lg leading-relaxed mb-8 max-w-lg" style="font-size: 1.0625rem; line-height: 1.7;">
-          Helsepasset samler all viktig helseinformasjon på ett sted. Trygt, enkelt og alltid oppdatert.
+          [KUNDEINNHOLD: Kort beskrivelse av Helsepasset – hva det er og hva det gjør for brukeren]
         </p>
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
           <a
@@ -174,7 +174,7 @@ const faqItems = [
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-16" data-hp-reveal>
         <h2 id="features-heading" class="font-serif font-bold text-ink mb-4" style="font-size: clamp(2rem, 4vw, 3rem);">Hvorfor velge Helsepasset?</h2>
-        <p class="text-muted-ink max-w-xl mx-auto" style="font-size: 1.0625rem; line-height: 1.7;">Vi gjør det enkelt å ha oversikt over helsen din – uansett hvor du er.</p>
+        <p class="text-muted-ink max-w-xl mx-auto" style="font-size: 1.0625rem; line-height: 1.7;">[KUNDEINNHOLD: Undertittel for "Hvorfor velge Helsepasset?" – beskriv kjerneverdi]</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {features.map((f, i) => (
@@ -334,7 +334,7 @@ const faqItems = [
     <div class="relative max-w-3xl mx-auto px-6 text-center" data-hp-reveal>
       <h2 id="cta-heading" class="font-serif font-bold mb-4" style="font-size: clamp(2rem, 4vw, 3rem);">Klar til å ta kontroll over helsen din?</h2>
       <p class="text-forest-contrast/80 text-lg mb-8 max-w-xl mx-auto">
-        Ta kontakt i dag og la oss hjelpe deg med å sette opp ditt personlige helsepass.
+        [KUNDEINNHOLD: Motiverende underoverskrift for call-to-action – oppfordring til å opprette konto]
       </p>
       <a
         href="/registrer"
